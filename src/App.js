@@ -527,14 +527,14 @@ const CryptexIDWebsite = () => {
 
   // Dashboard Component
   const Dashboard = memo(() => {
-    if (!showDashboard) return null;
-
     const [activeTab, setActiveTab] = useState('overview');
     const [notifications] = useState([
       { id: 1, type: 'success', message: 'Identity verification completed successfully', time: '2 minutes ago' },
       { id: 2, type: 'info', message: 'New login from Bangalore, Karnataka', time: '1 hour ago' },
       { id: 3, type: 'warning', message: 'Biometric pattern updated', time: '3 hours ago' }
     ]);
+
+    if (!showDashboard) return null;
 
     return (
       <div className="fixed inset-0 z-50 bg-gray-100">
@@ -873,24 +873,81 @@ const CryptexIDWebsite = () => {
                   
                   <div className="bg-white rounded-2xl shadow-sm border">
                     <div className="p-6">
-                      <div className="space-y-6">
-                        {[
-                          { type: 'verification', action: 'Identity verification completed', time: '2 minutes ago', icon: CheckCircle, color: 'text-green-600' },
-                          { type: 'login', action: 'New login from Bangalore, Karnataka', time: '1 hour ago', icon: Globe, color: 'text-blue-600' },
-                          { type: 'update', action: 'Biometric pattern updated', time: '3 hours ago', icon: RefreshCw, color: 'text-orange-600' },
-                          { type: 'security', action: 'Security settings modified', time: '1 day ago', icon: Shield, color: 'text-purple-600' },
-                          { type: 'export', action: 'Credentials exported', time: '2 days ago', icon: Download, color: 'text-gray-600' }
-                        ].map((activity, index) => (
-                          <div key={index} className="flex items-start space-x-4 pb-6 border-b border-gray-100 last:border-b-0">
-                            <div className={`w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center ${activity.color}`}>
-                              <activity.icon size={20} />
-                            </div>
-                            <div className="flex-1">
-                              <p className="text-gray-900 font-medium">{activity.action}</p>
-                              <p className="text-sm text-gray-500">{activity.time}</p>
-                            </div>
+                      <div className="space-y-6 mb-8">
+                        <div className="flex items-start space-x-4">
+                          <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <Database className="text-blue-600" size={24} />
                           </div>
-                        ))}
+                          <div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Distributed Ledger Technology</h3>
+                            <p className="text-gray-600">Your biometric data is secured across multiple blockchain nodes, making it virtually impossible to compromise or alter.</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start space-x-4">
+                          <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <Shield className="text-green-600" size={24} />
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Zero-Knowledge Architecture</h3>
+                            <p className="text-gray-600">We never store your raw biometric data. Only encrypted mathematical representations are processed and stored.</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start space-x-4">
+                          <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <Cpu className="text-purple-600" size={24} />
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Advanced AI Protection</h3>
+                            <p className="text-gray-600">Machine learning algorithms continuously monitor for threats and adapt security measures in real-time.</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <button 
+                        onClick={handleGetStarted}
+                        className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-200 shadow-lg hover:shadow-xl"
+                      >
+                        Experience Security
+                      </button>
+                    </div>
+
+                    <div className="relative">
+                      <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 text-white">
+                        <div className="flex items-center justify-between mb-6">
+                          <h3 className="text-xl font-bold">Security Dashboard</h3>
+                          <div className="flex items-center space-x-2">
+                            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                            <span className="text-green-400 text-sm font-medium">SECURE</span>
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-4">
+                          <div className="flex justify-between items-center p-4 bg-white/10 rounded-xl">
+                            <span className="text-gray-300">Encryption Level</span>
+                            <span className="text-green-400 font-bold">AES-256</span>
+                          </div>
+                          <div className="flex justify-between items-center p-4 bg-white/10 rounded-xl">
+                            <span className="text-gray-300">Blockchain Nodes</span>
+                            <span className="text-blue-400 font-bold">1,847 Active</span>
+                          </div>
+                          <div className="flex justify-between items-center p-4 bg-white/10 rounded-xl">
+                            <span className="text-gray-300">Threat Detection</span>
+                            <span className="text-green-400 font-bold">99.99% Uptime</span>
+                          </div>
+                          <div className="flex justify-between items-center p-4 bg-white/10 rounded-xl">
+                            <span className="text-gray-300">Identity Score</span>
+                            <span className="text-green-400 font-bold">98.7%</span>
+                          </div>
+                        </div>
+
+                        <div className="mt-6 p-4 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-xl border border-green-500/30">
+                          <div className="flex items-center">
+                            <CheckCircle className="text-green-400 mr-3" size={20} />
+                            <span className="text-green-100 font-medium">All systems operational</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -982,6 +1039,12 @@ const CryptexIDWebsite = () => {
               <a href="#security" className="text-gray-700 hover:text-orange-600 transition-colors font-medium">Security</a>
               <a href="#contact" className="text-gray-700 hover:text-orange-600 transition-colors font-medium">Contact</a>
               <button 
+                onClick={() => setShowDashboard(true)}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                Dashboard
+              </button>
+              <button 
                 onClick={handleGetStarted}
                 className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl"
               >
@@ -1007,6 +1070,12 @@ const CryptexIDWebsite = () => {
               <a href="#how-it-works" className="block text-gray-700 hover:text-orange-600 transition-colors font-medium">How It Works</a>
               <a href="#security" className="block text-gray-700 hover:text-orange-600 transition-colors font-medium">Security</a>
               <a href="#contact" className="block text-gray-700 hover:text-orange-600 transition-colors font-medium">Contact</a>
+              <button 
+                onClick={() => setShowDashboard(true)}
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 mb-2"
+              >
+                Dashboard
+              </button>
               <button 
                 onClick={handleGetStarted}
                 className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200"
